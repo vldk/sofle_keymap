@@ -105,7 +105,7 @@ bool rgb_matrix_mode_active(uint8_t mode) {
 
 void rgb_matrix_update_current_mode(uint8_t mode) {
     rgb_matrix_config.speed = rgb_matrix_speed_for_mode(mode);
-    rgb_matrix_mode(mode);
+    rgb_matrix_mode_noeeprom(mode);
 }
 
 void rgb_matrix_update_dynamic_mode(uint8_t mode) {
@@ -219,15 +219,15 @@ void rgb_matrix_set_typing_defaults(void) {
 }
 
 void rgb_matrix_set_defaults(void) {
-    rgb_matrix_enable();
-    rgb_matrix_sethsv(THEME_HSV);
+    rgb_matrix_enable_noeeprom();
+    rgb_matrix_sethsv_noeeprom(THEME_HSV);
 
     user_config.rgb_layer_indicator  = true;
     user_config.rgb_matrix_idle_anim = true;
 
     rgb_matrix_set_typing_defaults();
 
-    rgb_matrix_mode(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
 }
 
 void matrix_scan_rgb(void) {
