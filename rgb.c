@@ -29,8 +29,10 @@ const char* rgb_matrix_anim_oled_text(uint8_t mode) {
             return PSTR("Cycle");
         case RGB_MATRIX_RAINBOW_PINWHEELS:
             return PSTR("Wheel");
-        case RGB_MATRIX_CYCLE_LEFT_RIGHT:
-            return PSTR("Wave ");
+        case RGB_MATRIX_DIGITAL_RAIN:
+            return PSTR("Rain ");
+        // case RGB_MATRIX_CYCLE_LEFT_RIGHT:
+        //     return PSTR("Wave ");
         default:
             return PSTR("");
     }
@@ -89,7 +91,8 @@ uint8_t rgb_matrix_speed_for_mode(uint8_t mode) {
         case RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS:
             return RGB_MATRIX_ANIMATION_SPEED_FAST;
         case RGB_MATRIX_BREATHING:
-        case RGB_MATRIX_CYCLE_LEFT_RIGHT:
+        // case RGB_MATRIX_CYCLE_LEFT_RIGHT:
+        case RGB_MATRIX_DIGITAL_RAIN:
         case RGB_MATRIX_RAINBOW_PINWHEELS:
             return RGB_MATRIX_ANIMATION_SPEED_SLOW;
         case RGB_MATRIX_CYCLE_ALL:
@@ -176,11 +179,11 @@ void rgb_matrix_toggle_simple_passive_mode(void) {
 
 void rgb_matrix_toggle_color_passive_mode(void) {
     switch (get_rgb_matrix_idle_mode()) {
-        case RGB_MATRIX_RAINBOW_PINWHEELS:
-            rgb_matrix_update_mode(RGB_MATRIX_CYCLE_LEFT_RIGHT);
+        case RGB_MATRIX_DIGITAL_RAIN:
+            rgb_matrix_update_mode(RGB_MATRIX_RAINBOW_PINWHEELS);
             break;
         default:
-            rgb_matrix_update_mode(RGB_MATRIX_RAINBOW_PINWHEELS);
+            rgb_matrix_update_mode(RGB_MATRIX_DIGITAL_RAIN);
             break;
     }
 }
@@ -208,7 +211,7 @@ void rgb_matrix_set_gaming_defaults(void) {
         user_config.rgb_layer_indicator = true;
     }
     user_config.rgb_matrix_idle_timeout = GAMING_IDLE_TIMEOUT;
-    rgb_matrix_update_mode(RGB_MATRIX_RAINBOW_PINWHEELS);
+    rgb_matrix_update_mode(RGB_MATRIX_DIGITAL_RAIN);
     rgb_matrix_update_mode(RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS);
 }
 
